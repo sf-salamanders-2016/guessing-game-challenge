@@ -8,7 +8,9 @@ class GuessingGame
     @guesses_left = guesses
     @message = "Yay, you won!"
     @current_guess = nil
-    @response = ''
+    @game_active = true
+    @won = false
+    @lost = false
   end
 
   def congrats_message
@@ -20,44 +22,29 @@ class GuessingGame
   end
 
   def remaining_guesses
-    if @guesses_left == 1
-    @response += ' WARNING: Only one guess left!'
-    end
     @guesses_left
   end
 
   def has_won?
-    false
+
+    if @secret_num == @current_guess
+      @won = true
+    else
+      @won = false
+    end
   end
 
   def has_lost?
-    false
-  end
-
-  def deduct_guesses_left
-    @guesses_left -= 1
+    if @guesses_left == 0
+      @lost = true
+      @game_active = false
+    else
+      @lost = false
+    end
   end
 
   def guess(number)
-    if number != @current_guess
-      @current_guess = number
-      deduct_guesses_left
-    end
 
-    if @current_guess < @secret_num
-      @response = "Too low!"
-    elsif @current_guess > @secret_num
-      @response = "Too high!"
-    end
-
-    remaining_guesses
-
-    @response
-
-  end
-end
-
-__END__
 
     if @current_guess != number && game_active == true
       has_won?

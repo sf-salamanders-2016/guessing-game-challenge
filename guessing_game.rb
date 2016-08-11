@@ -20,6 +20,10 @@ class GuessingGame
   end
 
   def guess(number)
+    if @remaining_guesses <= 1
+      @remaining_guesses -= 1
+      return "You lost! The number was #{@secret_number}"
+    end
 
     if @guessed_numbers.include?(number) && number < @secret_number
       if @remaining_guesses == 1
@@ -52,7 +56,7 @@ class GuessingGame
       @guessed_numbers << number
       "Too high!"
     else
-      congrats_message + " The number was #{number}"
+      congrats_message + " The number was #{@secret_number}"
     end
 
   end

@@ -51,6 +51,8 @@ class GuessingGame
       end
       @guessed_numbers << number
       "Too high!"
+    else
+      congrats_message + " The number was #{number}"
     end
 
   end

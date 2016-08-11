@@ -10,40 +10,40 @@ p (game.congrats_message == "Yay, you won!")
 game.congrats_message = "Correct!"
 p (game.congrats_message == "Correct!")
 
-# puts "There will be 5 guesses remaining in game 1"
-# p (game.remaining_guesses == 5)
+puts "There will be 5 guesses remaining in game 1"
+p (game.remaining_guesses == 5)
 
-# puts "There will be 1 guess remaining in game 2"
-# p (losing_game.remaining_guesses == 1)
+puts "There will be 1 guess remaining in game 2"
+p (losing_game.remaining_guesses == 1)
 
-# puts "User has neither won nor lost yet"
-# p (game.has_won? == false)
-# p (game.has_lost? == false)
+puts "User has neither won nor lost yet"
+p (game.has_won? == false)
+p (game.has_lost? == false)
 
-# puts "Wrong guess receives correct feedback"
-# p (game.guess(2) == "Too low!")
+puts "Wrong guess receives correct feedback"
+p (game.guess(2) == "Too low!")
 
-# puts "Wrong guess deducts from remaining guesses"
-# p (game.remaining_guesses == 4)
+puts "Wrong guess deducts from remaining guesses"
+p (game.remaining_guesses == 4)
 
-# puts "Repeated guesses do not cost the user anything"
-# p (game.guess(2) == "Too low!")
-# p (game.remaining_guesses == 4)
+puts "Repeated guesses do not cost the user anything"
+p (game.guess(2) == "Too low!")
+p (game.remaining_guesses == 4)
 
-# puts "Wrong guess receives feedback"
-# p (game.guess(11) == "Too high!")
+puts "Wrong guess receives feedback"
+p (game.guess(11) == "Too high!")
 
-# puts "Wrong guess deducts from remaining guesses"
-# p (game.remaining_guesses == 3)
+puts "Wrong guess deducts from remaining guesses"
+p (game.remaining_guesses == 3)
 
-# p (game.guess(10) == "Too high!")
-# p (game.remaining_guesses == 2)
+p (game.guess(10) == "Too high!")
+p (game.remaining_guesses == 2)
 
-# puts "Warning is given when there's only one guess remaining"
-# p (game.guess(9) == "Too high! WARNING: Only one guess left!")
+puts "Warning is given when there's only one guess remaining"
+p (game.guess(9) == "Too high! WARNING: Only one guess left!")
 
-# puts "Repeated guess when 1 guess is remaining should have warning"
-# p (game.guess(9) == "Too high! WARNING: Only one guess left!")
+puts "Repeated guess when 1 guess is remaining should have warning"
+p (game.guess(9) == "Too high! WARNING: Only one guess left!")
 
 # # make deep copy of game 1 to test losing
 # copied_game = Marshal.load(Marshal.dump(game))

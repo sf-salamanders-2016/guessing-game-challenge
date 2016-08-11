@@ -9,23 +9,55 @@ class GuessingGame
     @remaining_guesses = max_guesses
     @guess = 0
     @guesses = []
+    @finished_game = ""
+    # @finished_game = false
   end
 
   def guess(num)
     @guess = num
+     return "You already won. The number was #{@secret_num}" if @finished_game == "won"
+     return "You already lost. The number was #{@secret_num}" if @finished_game == "lost"
+
     if @guesses.include?(num) == false
         @remaining_guesses -= 1
         @guesses << num
     end
-    return "Too low!" if num < @secret_num
+
+    if @remaining_guesses == 0 && num != @secret_num
+      @finished_game = "lost"
+      return "You lost! The number was #{@secret_num}"
+    end
+
+    #warning options
+    if @remaining_guesses != 1
+      warning = ""
+    else
+      warning = " WARNING: Only one guess left!"
+    end
+
+    #winning options
+
+    if num < @secret_num
+      return "Too low!#{warning}"
+    elsif num > @secret_num
+      return "Too high!#{warning}"
+    elsif num == @secret_num && @remaining_guesses == @max_guesses -1
+      @finished_game = "won"
+      return "Yay, you won! The number was #{num}"
+    elsif num == @secret_num
+      @finished_game = "won"
+      return "Correct! The number was #{num}"
+    else
+      return "That's not a number fool!"
+    end
   end
 
   def has_won?
-    @guess == @secret_num ? true : false
+    @finished_game == "won"
   end
 
   def has_lost?
-    @remaining_guesses == 0 ? true : false
+    @finished_game == "lost"
   end
 
 

@@ -1,5 +1,7 @@
 require_relative 'guessing_game'
 
+# Driver code
+
 puts "We can initialize a guessing game with our desired 'secret number' and the number of allowed guesses"
 game = GuessingGame.new(8, 5) # game 1
 losing_game = GuessingGame.new(999, 1) # game 2

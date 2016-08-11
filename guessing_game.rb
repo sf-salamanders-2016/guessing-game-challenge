@@ -14,7 +14,7 @@ class GuessingGame
     @guesses_array = []
     @current_integer = nil
     @congrats_message = "Yay, you won!"
-    @user_integer = user_integer
+    #@user_integer = user_integer
   end
 
   def remaining_guesses
@@ -29,16 +29,14 @@ class GuessingGame
   end
 
   def guess(user_integer)
-    @current_integer = user_integer
-    @guesses_array << @current_integer
-    if @guesses_array.include?(user_integer)
+    if !@guesses_array.include?(user_integer) # already guessed before?
       @guess_count += 1
+      @guesses_array << user_integer
     end
-
-    case guess
-    when user_integer > secret_number && guess_count < max_guesses
+    case user_integer
+    when user_integer > @secret_number && @guess_count < @max_guesses
       puts "Too high!"
-    when user_integer < secret_number && guess_count < max_guesses
+    when user_integer < @secret_number && @guess_count < @max_guesses
       puts "Too low!"
     end
 
@@ -50,11 +48,16 @@ class GuessingGame
   end
 
   def has_won?
-    true if @current_integer == @secret_number && @guesses_array.uniq.count <= max_guesses
+    if @current_integer == @secret_number && @guesses_array.uniq.count <= max_guesses
+      return true
+    else
+      return false
+    end
     # true or false
   end
 
   def has_lost?
+    false
     # true or false
   end
 
@@ -62,10 +65,13 @@ class GuessingGame
   #   @congrats_message
   # end
 
-  def congrats_message
-   # @congrats_message == "Correct!"
-  #   if "Yay, you won!"
-  #   "Correct!"
-  end
+  # def congrats_message
+  #  # @congrats_message == "Correct!"
+  # #   if "Yay, you won!"
+  # #   "Correct!"
+  # end
 
 end
+# drivercode
+# game = GuessingGame.new(8, 5)
+# p game.congrats_message

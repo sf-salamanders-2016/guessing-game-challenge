@@ -13,6 +13,7 @@ p (game.congrats_message == "Correct!")
 puts "There will be 5 guesses remaining in game 1"
 p (game.remaining_guesses == 5)
 
+
 puts "There will be 1 guess remaining in game 2"
 p (losing_game.remaining_guesses == 1)
 
@@ -25,6 +26,10 @@ p (game.guess(2) == "Too low!")
 
 puts "Wrong guess deducts from remaining guesses"
 p (game.remaining_guesses == 4)
+
+
+
+
 
 puts "Repeated guesses do not cost the user anything"
 p (game.guess(2) == "Too low!")
@@ -55,6 +60,8 @@ p (winning_game.guess(100) == "Yay, you won! The number was 100")
 puts "Losing games get a loss message"
 p (losing_game.guess(9) == "You lost! The number was 999")
 p (copied_game.guess(123) == "You lost! The number was 8")
+
+__END__
 
 puts "Guesses on completed games show the status of the game"
 p (game.guess(8) == "You already won. The number was 8")

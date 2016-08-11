@@ -4,7 +4,7 @@ class GuessingGame
   def initialize(secret_number,remaining_guesses)
     @secret_number = secret_number
     @remaining_guesses = remaining_guesses
-    @congrats_message = 'Congrats'
+    @congrats_message = "Correct! The number was #{@secret_number}"
     @won = false
     @lost = false
     @all_guesses = []
@@ -20,26 +20,29 @@ class GuessingGame
   end
 
   def guess(number)
-    warning = ''
+    # warning = ''
     if @secret_number == number
       store_guess(number)
       @won = true
       return @congrats_message
     end
     unless @secret_number == number
-      if @secret_number < number
+      if @remaining_guesses > 1
         store_guess(number)
-        return "Too high!" + ' ' + warning
       end
-      if @secret_number > number
-        store_guess(number)
-        return "Too low!" + ' ' + warning
+      # if @secret_number < number
+      #   store_guess(number)
+      # end
+      # if @secret_number > number
+      #   store_guess(number)
+      # end
+      if @remaining_guesses == 1
+        # store_guess(number)
+        # return "#{store_guess(number)}WARNING: Only one guess left!"
       end
-      # if @all_guesses.include?(number)
-      #   return
-
-    end
   end
+    end
+
   private
 
   def store_guess(number)
@@ -47,17 +50,18 @@ class GuessingGame
       @all_guesses << number
       @remaining_guesses -= 1
     end
-    if @remaining_guesses == 1
-      puts "WARNING: Only one guess left!"
-    else
-      puts ''
+    if @secret_number < number
+      puts "Too high!"
+    end
+    if @secret_number > number
+      puts "Too low!"
     end
   end
 
 end
 
-# game = GuessingGame.new(8, 5)
-# p game.has_won?
+game = GuessingGame.new(8, 5)
+p game.guess(8)
 
 
 

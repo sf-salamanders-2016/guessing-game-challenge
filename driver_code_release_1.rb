@@ -8,6 +8,7 @@ winning_game = GuessingGame.new(100, 2) # game 3
 puts "We can set a custom congrats message"
 p (game.congrats_message == "Yay, you won!")
 game.congrats_message = "Correct!"
+p "hello"
 p (game.congrats_message == "Correct!")
 
 puts "There will be 5 guesses remaining in game 1"

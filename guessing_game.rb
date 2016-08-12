@@ -1,6 +1,6 @@
 class GuessingGame
 
-  attr_accessor :guesses_left, :current_guess, :game_active
+  attr_accessor :guesses_left, :current_guess, :response, :game_finished
   attr_reader :secret_num
 
   def initialize(secret_num, guesses)
@@ -9,6 +9,7 @@ class GuessingGame
     @message = "Yay, you won!"
     @current_guess = nil
     @response = ''
+    @game_finished = nil
   end
 
   def congrats_message
@@ -21,7 +22,11 @@ class GuessingGame
 
   def remaining_guesses
     if @guesses_left == 1
-    @response += ' WARNING: Only one guess left!'
+      @response += ' WARNING: Only one guess left!'
+    elsif @guesses_left == 0
+      @response += "You lost! The number was #{secret_num}"
+    elsif @guesses_left < 0
+      @response += "You already lost. The number was #{@secret_num}"
     end
     @guesses_left
   end
@@ -39,22 +44,46 @@ class GuessingGame
   end
 
   def guess(number)
-    if number != @current_guess
-      @current_guess = number
-      deduct_guesses_left
+    @response = ''
+
+
+    if @game_finished != true
+      if number != @current_guess
+        @current_guess = number
+        deduct_guesses_left
+      end
+      p @guesses_left
+
+      if number == @secret_num
+        @response += @message + " The number was #{number}"
+        @game_finished = true
+        return @response
+      end
+
+      if @guesses_left > 0
+        if number < @secret_num
+          @response = "Too low!"
+        elsif number > @secret_num
+          @response = "Too high!"
+        end
+      end
+      remaining_guesses
+      @response
+    else
+        "You already won. The number was #{@secret_num}"
     end
 
-    if @current_guess < @secret_num
-      @response = "Too low!"
-    elsif @current_guess > @secret_num
-      @response = "Too high!"
-    end
-
-    remaining_guesses
-
-    @response
 
   end
+
+
+
+
+
+
+
+
+
 end
 
 __END__
